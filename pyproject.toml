@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "awslambdaric>=3.0.0",
+    "pytest>=8.3.3",
+]
 
 [build-system]
 requires = ["hatchling"]
