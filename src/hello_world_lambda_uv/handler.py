@@ -1,7 +1,6 @@
 import os
 import json
 
-
 def handler(event, context):
     # validate inputs - AWS_REGION must be set in the operating system environment
     if 'AWS_REGION' not in os.environ:

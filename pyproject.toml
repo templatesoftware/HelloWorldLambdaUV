@@ -1,13 +1,16 @@
 [project]
 name = "hello_world_lambda_uv"
 version = "0.1.0"
-description = "Add your description here"
+description = "Basic hello world lambda function using UV"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "awslambdaric>=3.0.0",
     "pytest>=8.3.3",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [build-system]
 requires = ["hatchling"]
