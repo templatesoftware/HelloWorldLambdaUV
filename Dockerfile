@@ -19,7 +19,7 @@ RUN sh /uv-installer.sh && rm /uv-installer.sh
 ENV PATH="/root/.local/bin/:$PATH"
 
 # working dir to source code
-ARG FUNCTION_DIR="src/hello_world_lambda_uv/"
+ARG FUNCTION_DIR="/function"
 
 # Copy function code
 RUN mkdir -p ${FUNCTION_DIR}
@@ -33,13 +33,15 @@ FROM build-image
 RUN uv venv
 
 # Install the function's dependencies into the function directory
-RUN uv pip install -r ./${FUNCTION_DIR}/pyproject.toml --target ${FUNCTION_DIR}
+RUN uv pip install -r ${FUNCTION_DIR}/pyproject.toml --target ${FUNCTION_DIR}
 
 # Set working directory to function root directory
 WORKDIR ${FUNCTION_DIR}
 
 # Copy in the built dependencies from the build-image
 COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
+
+RUN ls -ltr ${FUNCTION_DIR}
 
 # Set the entrypoint to run the AWS Lambda runtime interface client
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
