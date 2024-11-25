@@ -129,7 +129,7 @@ tests/handler_test.py ...                                                       
 ====================================================== 3 passed in 0.07s ======================================================
 ```
 
-### 2.3.1 Testing with Docker
+### 2.3.2 Testing locally with Docker
 * Build your docker image ```docker build --provenance=false  --platform linux/arm64 -t hello-world-uv-lambda .``` 
   We name the image ```hello-world-uv-lambda```
 * Once the image is built we can run it with:
@@ -157,7 +157,3 @@ curl "http://localhost:9002/2015-03-31/functions/function/invocations" -d '{"nam
   "body": "{\"message\": \"Hello John Smith! From us-east-1.\"}"
 }
 ```
-
-
-
-### Testing with AWS CLI 
