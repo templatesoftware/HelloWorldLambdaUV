@@ -10,4 +10,6 @@ wheels/
 .venv
 
 # Dist files
-lambda_package/
+lambda_upload_package/
+lambda_response.json
+*.zip

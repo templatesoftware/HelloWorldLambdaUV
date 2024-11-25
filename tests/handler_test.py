@@ -1,7 +1,8 @@
 import os
 import unittest
-from hello_world_lambda_uv import handler
 from unittest.mock import patch
+
+from hello_world_lambda_uv import lambda_handler
 
 
 class TestHandler(unittest.TestCase):
@@ -17,7 +18,7 @@ class TestHandler(unittest.TestCase):
             "httpMethod": "GET",
             "queryStringParameters": {"key1": "value1"}
         }
-        response = handler.handler(
+        response = lambda_handler.handler(
             event,
             context
         )
@@ -36,7 +37,7 @@ class TestHandler(unittest.TestCase):
             "httpMethod": "GET",
             "name": "John Smith",
         }
-        response = handler.handler(
+        response = lambda_handler.handler(
             event,
             context
         )
@@ -56,7 +57,7 @@ class TestHandler(unittest.TestCase):
             "httpMethod": "GET",
             "queryStringParameters": {"key1": "value1"}
         }
-        response = handler.handler(
+        response = lambda_handler.handler(
             event,
             context
         )
