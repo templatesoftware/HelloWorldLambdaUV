@@ -15,17 +15,17 @@ if [ -f "$ZIP_FILE_NAME" ]; then
   rm "$ZIP_FILE_NAME"
 fi
 
-# create a directory to store our zip files
+# create a directory to install our dependencies into
 mkdir -p lambda_upload_package
 
 # make sure the directory is empty
 rm -rf lambda_upload_package*
 rm -rf /path/to/directory/.*
 
-# install project dependencies into lambda_upload_package
+# install project dependencies into directory
 uv pip install -r pyproject.toml --target lambda_upload_package
 
-# zip up the dependencies
+# zip up the dependency directory
 zip -r "$ZIP_FILE_NAME" lambda_upload_package/
 
 # put python source code into the zip file

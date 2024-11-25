@@ -6,46 +6,57 @@
   manager 
 
 #### 1.1 .Prerequisites
-1. [Git installed](https://github.com/git-guides/install-git) on your computer
-2. [Docker installed](https://docs.docker.com/engine/install/) on your computer
+1. [Git](https://github.com/git-guides/install-git) 
+2. [Docker](https://docs.docker.com/engine/install/)
 3. [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and an AWS account 
-4. [UV installed](https://docs.astral.sh/uv/getting-started/installation/) on your local computer
+4. [UV](https://docs.astral.sh/uv/getting-started/installation/) 
 
-# 2. Building, deploying, and testing 
+# 2. Building, deploying, and testing
+
+## 2.1 Building
+
 1. Clone this repo to your local computer via  <TK command>
-2. Change directory into the cloned repo via ```cd <TK>``` 
-3. Build the project with uv via ```uv build```
-4. Run the unit tests with ``` uv run pytest```
-5. If the package is building and the tests are running successfully you're ready to deploy the lambda to AWS!
-   6. Alternatively, you can further test the package by following the steps in [Testing with Docker]
-      (#Testing-with-Docker) 
+2. Change directory into the cloned repo:
+```cd <TK>``` 
+3. Build the project with uv:
+```bash 
+uv build
+```
+4. Run the unit tests with
+```bash 
+uv run pytest
+```
+5. If the build and tests run successfully, you're ready to deploy your Lambda to AWS.
+   Alternatively, further test the package by following the steps in Testing with Docker.
 
-## 2.1 Deploy to AWS
+## 2.2 Deploy to AWS
 * You can deploy this lambda function to AWS via two different ways:
-  1. **Zip file** - build and upload a zip file directly to the lambda console. This is simpler and faster. 
-  2. **Dockerfile** - build a Lambda compatible docker image, upload it to ECR, then create your Lambda based on 
-     that image. This is more complex than the zip file based approach - we recommend starting with option 1.
+  1. **Zip file** - Build and upload a ZIP file directly to the Lambda console. This is simpler and faster. 
+  2. **Dockerfile** - Build a Lambda-compatible Docker image, upload it to ECR, and then create your Lambda from that image. This method is more complex, so we recommend starting with option 1.
 
-### 2.1.2 Deploy to AWS with a zip file:
-1. We provide a ```zipFunction.sh``` to zip the dependencies and source code into a lambda compatible zip file. 
-   Create the zip file by running ```sh zipFunction.sh```
-2. After executing you should see a ```hello_world_uv_lambda.zip``` in the directory. This contains all the lambda 
-   source code and its dependencies. We're now ready to upload this to S3 and create our function 
-1. In the AWS console [create a new](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/create/function) lambda function
-   2. Select "Author from scratch"
-   3. Enter a "Function Name" such as ```hello-world-uv-lambda```
-   4. In Runtime, select ```Python 3.9```
-   5. Use architecture ```x86_64```
-   6. Click "create function"
+### 2.2.1 Deploy with a zip file:
+1. Use the provided ```zipFunction.sh``` to package the dependencies and source code into a Lambda-compatible zip 
+   file. 
+```bash
+sh zipFunction.sh
+```
+2. After running the command, you should see a ```hello_world_uv_lambda.zip``` file in your directory. This file contains the Lambda source code and its dependencies, ready to be uploaded to S3.
+1. In the AWS console [create a new lambda function](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/create/function)
+   2. Select **Author from scratch**
+   3. Enter a "Function Name" e.g. ```hello-world-uv-lambda```
+   4. Set the **Runtime** to ```Python 3.9```
+   5. Choose **architecture** ```x86_64```
+   6. Click **Create function**
 ![Console image](https://private-user-images.githubusercontent.com/188703309/389572918-a8741102-7f42-4886-8d90-636452f21ab1.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzI1NDU4MDcsIm5iZiI6MTczMjU0NTUwNywicGF0aCI6Ii8xODg3MDMzMDkvMzg5NTcyOTE4LWE4NzQxMTAyLTdmNDItNDg4Ni04ZDkwLTYzNjQ1MmYyMWFiMS5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMTI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTEyNVQxNDM4MjdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iY2QyY2U1YTFjOWIzZGMyMGU5Y2EwZjhkNjRjZDE2OTFmNjM5NDAxODI5MjM5YTk3MWJlZjQwMDY3ZmI2MTZkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.R8wmJvSkOXQ357BPs2STlGYB0VMKPXcJlyYbS5djhkI)
-7. You can now upload your zip file by selecting "Upload from" and selecting your newly created zip file
+7. Once the function is created, upload the zip file by selecting **Upload from** and choosing the ```hello_world_uv_lambda.zip``` file.
 ![zip file upload image](https://private-user-images.githubusercontent.com/188703309/389572905-0b14725f-1b32-4b61-93d6-d636ac321d98.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzI1NDU4MDcsIm5iZiI6MTczMjU0NTUwNywicGF0aCI6Ii8xODg3MDMzMDkvMzg5NTcyOTA1LTBiMTQ3MjVmLTFiMzItNGI2MS05M2Q2LWQ2MzZhYzMyMWQ5OC5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMTI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTEyNVQxNDM4MjdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02NTA2NWY0ZGY2ZDllMDhlZDBjMTcxYmFlZmNhOGUyZTc2NDNjODdlYzUxN2I0MTEyYjhkMzA4MzBhNWIzNGUxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.aFL0lgKq_9m7cO8sWwungO0yplxyC4sTZ58dgp5W9_k)
-8. Finally, update the "Runtime Settings" **Handler** to our handler ```src.hello_world_lambda_uv.lambda_handler.handler```
+8. Update the **Handler** setting to ```src.hello_world_lambda_uv.lambda_handler.handler```
 ![change handler settings image](https://private-user-images.githubusercontent.com/188703309/389574331-0fe35ad7-1c56-4a1f-b1c3-5d8edef8cf9e.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzI1NDU5NDcsIm5iZiI6MTczMjU0NTY0NywicGF0aCI6Ii8xODg3MDMzMDkvMzg5NTc0MzMxLTBmZTM1YWQ3LTFjNTYtNGExZi1iMWMzLTVkOGVkZWY4Y2Y5ZS5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMTI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTEyNVQxNDQwNDdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yMWYwY2IxZmU1Y2NiYTNiNWUxMDA0Mzc3ZjExMDNmM2YyZmFjMjcwOTliNTFlNzI5MGQ0MDhkNGFhNDMwOWM0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.KqhPgOI5floedBPJeZVJy5KQtTTS78vY_KHImS0WZKE)
-9. At this point you're ready to test your lambda, navigate to the "Test" section of the console, update the "Test 
-   event" section to your name and hit "Test"
+9. At this point you're ready to test the lambda, navigate to the **Test** section of the console, update the **Test 
+   event** section to your name and hit **Test**
 ![testing in console image](https://private-user-images.githubusercontent.com/188703309/389580355-82602c34-8b0b-4aad-ab38-b16991779110.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzI1NDY3MzYsIm5iZiI6MTczMjU0NjQzNiwicGF0aCI6Ii8xODg3MDMzMDkvMzg5NTgwMzU1LTgyNjAyYzM0LThiMGItNGFhZC1hYjM4LWIxNjk5MTc3OTExMC5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMTI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTEyNVQxNDUzNTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xMzk4YjRhNWUwYjExYzRjYTUzOTQyYWIxOWVmMGRmOGFiMzI0YWVlYmJiYmQzZDUyMTEzNzAwMWViYTYxNTZmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.LE44xYz5mykPOnUxjFZvhQutW28Uyb72D_mlSnblhXQ)
-10. Alternatively, you can test via the AWS CLI
+
+Alternatively, you can test via the AWS CLI
 ```bash
 aws lambda invoke \
     --function-name hello-world-uv-lambda \
@@ -53,10 +64,12 @@ aws lambda invoke \
     --payload '{ "name": "AJ Brown" }' \
     lambda_response.json
 ```
-and the output will be written into ```lambda_response.json```:
+the response from the lambda will be written into ```lambda_response.json```:
 ```bash
 cat lambda_response.json | jq
-// output 
+```
+Output:
+```json 
 {
   "statusCode": 200,
   "headers": {
@@ -67,7 +80,34 @@ cat lambda_response.json | jq
 ```
 
 ### 2.1.3 Deploy to AWS with a Docker image:
-1. 
+Utilizing a docker image to create lambda function is a great way to manage complex dependencies and ensure 
+compatibility across different environments. However, it is slightly more complex than the zip file based approach 
+1. build the Docker image - this command tags our image with the name ```hello-world-lambda-uv```
+```bash
+docker build --provenance=false  --platform linux/arm64 -t hello-world-lambda-uv .
+```
+2. In the AWS console, create a new **ECR** repository e.g. ```hello-world-lambda-uv```. This repository will be responsible for storing our Docker images.
+3. Once the repository is created, open it and select **View push commands**
+4. Follow the instructions to log into ECR using 
+```bash
+aws ecr get-login-password...
+``` 
+you should see ```Login Succeeded``` 
+4. Tag the local docker image
+```bash 
+docker tag hello-world-lambda-uv:latest <your AWS account>.dkr.ecr.us-east-1.amazonaws.com/hellow-world-lambda-uv:latest
+```
+5. Push the Docker image to ECR:
+```bash
+docker push <your aws account>.dkr.ecr.us-east-1.amazonaws.com/hello-world-lambda-uv:latest
+```
+6. Navigate to the lambda console and [create a new function](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/create/function)
+   7. Select **Container image**
+   8. Enter a **Function name** e.g. ```hello-world-lambda-uv-docker-image```
+   9. Copy the ```uri``` from your uploaded Docker image and input it into **Container image URI**
+   10. Choose *Architecture* ```x86_64```
+   11. **Create function**
+7. 
 
 ## 2.2. Testing
 

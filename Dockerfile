@@ -45,4 +45,4 @@ COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
 
 # Specify handler
-CMD [ "handler.handler" ]
+CMD [ "lambda_handler.handler" ]
