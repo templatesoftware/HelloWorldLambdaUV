@@ -44,7 +44,7 @@
    1. Select **Author from scratch**
    2. Enter a "Function Name" e.g. ```hello-world-uv-lambda```
    3. Set the **Runtime** to ```Python 3.9```
-   4. Choose **architecture** ```x86_64```
+   4. Choose **architecture** ```arm64```
    5. Click **Create function**
 ![Console image](https://private-user-images.githubusercontent.com/188703309/389572918-a8741102-7f42-4886-8d90-636452f21ab1.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzI1NDU4MDcsIm5iZiI6MTczMjU0NTUwNywicGF0aCI6Ii8xODg3MDMzMDkvMzg5NTcyOTE4LWE4NzQxMTAyLTdmNDItNDg4Ni04ZDkwLTYzNjQ1MmYyMWFiMS5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMTI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTEyNVQxNDM4MjdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iY2QyY2U1YTFjOWIzZGMyMGU5Y2EwZjhkNjRjZDE2OTFmNjM5NDAxODI5MjM5YTk3MWJlZjQwMDY3ZmI2MTZkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.R8wmJvSkOXQ357BPs2STlGYB0VMKPXcJlyYbS5djhkI)
 4. Once the function is created, upload the zip file by selecting **Upload from** and choosing the ```hello_world_uv_lambda.zip``` file
