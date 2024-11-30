@@ -1,9 +1,9 @@
-# 1. Overivew
+# 1. Overview
 * Use this package as a template to create a Python based AWS Lambda function using UV
 * The lambda logic itself is very simple, intended to be cloned and then built upon, this package makes it easy to get 
   started to build, test, and deploy 
 * This package uses [UV](https://docs.astral.sh/uv/) - a modern and  extremely fast Python package and project 
-  manager 
+  manager
 
 #### 1.1. Prerequisites
 1. [Git](https://github.com/git-guides/install-git) 
@@ -12,7 +12,10 @@
 4. [UV](https://docs.astral.sh/uv/getting-started/installation/)
 # 2. Building, deploying, and testing
 ## 2.1. Building
-1. Clone this repo to your local computer via  ```gh repo clone templatesoftware/HelloWorldLambdaUV```
+1. Download this repo to your local computer with:
+    ```bash
+    gh repo clone templatesoftware/HelloWorldLambdaUV
+    ```
 2. Change directory into the cloned repo:
     ``` bash
     cd HelloWorldLambdaUV
@@ -55,6 +58,8 @@
 
 
 ### 2.1.3 Deploy to AWS with a Docker image:
+![badge](https://template-software-badges-storage-bucket.s3.us-east-1.amazonaws.com/badges/HelloWorldDockerTest/HelloWorldDockerTest-build.svg)
+
 Utilizing a docker image to create lambda function is a great way to manage complex dependencies and ensure 
 compatibility across different environments. However, it is slightly more complex than the zip file based approach: 
 1. build the Docker image - this command tags our image with the name ```hello-world-lambda-uv```
