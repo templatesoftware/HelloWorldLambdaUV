@@ -45,8 +45,7 @@ class TestHandler(unittest.TestCase):
         self.assertEqual(response["headers"], {'Content-Type': 'application/json'})
         self.assertEqual(response["body"], "{\"message\": \"Hello John Smith! From us-east-1.\"}")
 
-
-    @patch.dict(os.environ, {})
+    @patch.dict(os.environ, clear=True)
     def test_error_code_returned_when_no_region_set(self):
         context = {
             "function_version": "1.0",
