@@ -46,7 +46,7 @@ class TestHandler(unittest.TestCase):
         self.assertEqual(response["body"], "{\"message\": \"Hello John Smith! From us-east-1.\"}")
 
 
-
+    @patch.dict(os.environ, {})
     def test_error_code_returned_when_no_region_set(self):
         context = {
             "function_version": "1.0",
@@ -63,4 +63,3 @@ class TestHandler(unittest.TestCase):
         )
         self.assertEqual(response["statusCode"], 400)
         self.assertEqual(response["body"], "{\"error\": \"No configured region\"}")
-
