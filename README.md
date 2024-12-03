@@ -1,4 +1,5 @@
 # 1. Overview
+![Overview status badge](https://template-software-badges-storage-bucket.s3.us-east-1.amazonaws.com/badges/Build/Build.svg)
 * Use this package as a template to create a Python based AWS Lambda function using UV
 * The lambda logic itself is very simple, intended to be cloned and then built upon, this package makes it easy to get 
   started to build, test, and deploy 
@@ -58,7 +59,7 @@
 
 
 ### 2.1.3 Deploy to AWS with a Docker image:
-![badge](https://template-software-badges-storage-bucket.s3.us-east-1.amazonaws.com/badges/HelloWorldDockerTest/HelloWorldDockerTest-build.svg)
+![docker test badge](https://template-software-badges-storage-bucket.s3.us-east-1.amazonaws.com/badges/DockerBuildAndTest/DockerBuild.svg)
 
 Utilizing a docker image to create lambda function is a great way to manage complex dependencies and ensure 
 compatibility across different environments. However, it is slightly more complex than the zip file based approach: 
@@ -81,7 +82,7 @@ compatibility across different environments. However, it is slightly more comple
     ```bash
     docker push <your aws account>.dkr.ecr.us-east-1.amazonaws.com/hello-world-lambda-uv:latest
     ```
-7. Copy the URI from your unewly ploaded Docker image 
+7. Copy the URI from your newly uploaded Docker image 
 8. Navigate to the lambda console and [create a new function](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/create/function)
    1. Select **Container image**
    2. Enter a **Function name** e.g. ```hello-world-lambda-uv-docker-image```
