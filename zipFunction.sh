@@ -20,7 +20,6 @@ mkdir -p lambda_upload_package
 
 # make sure the directory is empty
 rm -rf lambda_upload_package*
-rm -rf /path/to/directory/.*
 
 # install project dependencies into directory
 uv pip install -r pyproject.toml --target lambda_upload_package
